@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Restaurant - Receive Orders</title>
+    <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+</head>
+
+<body>
+    <h1>Incoming Orders</h1>
+    <ul id="orders"></ul>
+    <script>
+        const socket = io();
+        const ordersList = document.getElementById('orders');
+
+        // Listen for new orders
+        socket.on('newOrder', (order) => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${order.details} (at ${order.time})`;
+            ordersList.appendChild(listItem);
+        });
+    </script>
+</body>
+
+</html>
